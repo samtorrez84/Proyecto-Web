@@ -25,7 +25,6 @@ function App(){
         <Route element={<ProtecterRouter/>}>
           <Route path='/main' element={<MainPage/>}/>
           <Route path='/profile' element={<ProfilePage/>}/>
-
         </Route>
         
         {/* <Route path='/inicio' element={<h1> Hola1 </h1>}/> */}
