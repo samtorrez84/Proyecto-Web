@@ -2,6 +2,7 @@ import Usuario from '../models/usuario.js'
 import bcrypt from 'bcryptjs' //Encriptar
 import jwt from 'jsonwebtoken'//Creador de token
 import { createAcccesToken } from '../libs/jwt.js'
+import { TOKEN_SECRET } from '../config.js'
 
 export const register = async (req,res) => {
     const {email, contrasena, nombre} = req.body
@@ -39,7 +40,7 @@ export const register = async (req,res) => {
         const usuarioGuardado = await nuevoUsuario.save();
         const token = await createAcccesToken({id: usuarioGuardado._id})
                 
-        res.cookie('token', token) //Se envía por la cabecera
+        res.cookie('token', token); //Se envía por la cabecera
         res.json({
             message: 'Usuario creado satisfactoriamente'
         })
@@ -75,17 +76,13 @@ export const login = async (req,res) => {
 
         const usuarioEncontrado = await Usuario.findOne({email})
         if(!usuarioEncontrado){
-            return res.status(400).json({
-                menssage: 'Usuario no encontrado'
-            })
+            return res.status(400).json(['Usuario no encontrado'])
         }
 
        const coincide = await bcrypt.compare(contrasena, usuarioEncontrado.contrasena)  //Compara la contraseña con el usuario que se encuentra en la base de datos, retorna una contraseña
 
        if(!coincide){
-            return res.status(400).json({
-                message: 'Contraseña incorrecta'
-            })
+            return res.status(400).json(['Contraseña incorrecta'])
        }
 
         const token = await createAcccesToken({id: usuarioEncontrado._id}) //Del usuario encontrado, toma la id y crea un token
@@ -127,5 +124,23 @@ export const profile = async  (req, res) => {  //El usuario se guarda en req.
         email: usuarioEncontrado.email,
         createdAt: usuarioEncontrado.createdAt,
         updatedAt: usuarioEncontrado.updatedAt
+    })
+}
+
+export const verifyToken = async(req, res) => {
+    const {token} = req.cookies;
+    if (!token) return res.status(401).json({message: 'No autorizado'})
+
+    jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+        if (err) return res.status(401).json({message: 'No autorizado'})
+
+        const userFound = await Usuario.findById(user.id)
+        if (!userFound) return res.status(401).json({message: 'No autorizado'})
+
+        return res.json({
+            id: userFound._id,
+            nombre: userFound.nombre,
+            email: userFound.email
+        });
     })
 }
