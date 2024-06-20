@@ -1,6 +1,6 @@
 import {z} from 'zod';
 
-//recibimos el req.body como obyejo z
+//recibimos el req.body como objeto z
 //Vamos a validar el registro
 export const registerSchema = z.object({
     nombre: z.string({

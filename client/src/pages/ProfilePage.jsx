@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom';
 //import { deleteAccount } from '../api/userService'; // Asegúrate que la ruta de importación es correcta
 
 function ProfilePage() {
-  const { user, setUser } = useAuth();
+  const { user, setUser, deleteAcount } = useAuth();
   const navigate = useNavigate();
 
   const handleDeleteAccount = async () => {
     if (window.confirm("¿Estás seguro de que deseas eliminar tu cuenta permanentemente? Esta acción no se puede deshacer.")) {
       try {
-        //await deleteAccount(user._id);
+        await deleteAcount(user.id);
         console.log("Cuenta eliminada con éxito");
+        //Cookies.remove('token'); // Elimina la cookie del navegador
         setUser(null); // Limpia el usuario del contexto
         navigate('/'); // Redirige al usuario a la página principal
       } catch (error) {

@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest } from '../api/auth.js';
+import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest } from '../api/auth.js';
 import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -56,6 +56,11 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const deleteAcount = async (id) => {
+        console.log(`Quieres borrar el id: ${id}`)
+        const res = await deleteAcountRequest(id)
+        console.log(res.data)
+    }
     
      useEffect(() => {
         if (errors.length > 0){
@@ -106,6 +111,7 @@ export const AuthProvider = ({children}) => {
             signup,
             singin,
             setUser,
+            deleteAcount,
             loading,
             user, 
             isAuthenticated,
@@ -116,3 +122,4 @@ export const AuthProvider = ({children}) => {
 
     )
 }
+

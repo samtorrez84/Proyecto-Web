@@ -144,3 +144,13 @@ export const verifyToken = async(req, res) => {
         });
     })
 }
+
+export const deleteProfile = async(req, res) => {
+    const usuario = await Usuario.findByIdAndDelete(req.params.id);
+    if (!usuario) {
+        return res.status(404).json({message: 'Usuario no encontrado'});
+    }
+    res.clearCookie('token');
+    res.status(200).send({ message: 'Cuenta eliminada con éxito' });
+    // res.json(usuario) // Esto está de más y puede causar errores, ya enviaste una respuesta.
+};
