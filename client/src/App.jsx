@@ -10,6 +10,8 @@ import MainPage from "./pages/MainPage"
 
 import ProtecterRouter from "./ProtecterRouter"
 
+import Layout from "./components/Layout"
+
 function App(){
   return (
     //Todos los componentes dentro de AuthProvider pueden acceder al contexto
@@ -17,19 +19,20 @@ function App(){
       <BrowserRouter> 
       {/* Configuración de rutas */}
       {/* Se crean multiples rutas y después una a una*/}
-      <Routes>
-        <Route path='/' element={<HomePage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de */}
-        <Route path='/login' element={<LoginPage/>}/>
-        <Route path='/register' element={<RegisterPage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de RegisterPage */}
-
-        <Route element={<ProtecterRouter/>}>
-          <Route path='/main' element={<MainPage/>}/>
-          <Route path='/profile' element={<ProfilePage/>}/>
-        </Route>
-        
-        {/* <Route path='/inicio' element={<h1> Hola1 </h1>}/> */}
-      </Routes>
-    </BrowserRouter>  {/*Configuración */}
+        <Layout>
+          <Routes>
+            <Route path='/' element={<HomePage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de */}
+            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/register' element={<RegisterPage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de RegisterPage */}
+            <Route element={<ProtecterRouter/>}>
+              <Route path='/main' element={<MainPage/>}/>
+              <Route path='/profile' element={<ProfilePage/>}/>
+            </Route>
+            
+            {/* <Route path='/inicio' element={<h1> Hola1 </h1>}/> */}
+          </Routes>
+        </Layout>
+      </BrowserRouter>  {/*Configuración */}
     </AuthProvider>
   )
 }
