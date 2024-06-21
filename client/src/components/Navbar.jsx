@@ -13,8 +13,8 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex items-center flex-grow justify-end">
-        <Link to="/equipos" className="mx-2 px-4 py-2 bg-pink-500 text-white rounded">Equipos</Link>
-        <Link to="/estadisticas" className="mx-2 px-4 py-2 bg-green-500 text-white rounded">Estadísticas</Link>
+        <Link to="/equipos" className="mx-2 px-4 py-2 bg-custom-pink text-white rounded-full hover:bg-custom-green hover:text-black font-bold">Equipos</Link>
+        <Link to="/estadisticas" className="mx-2 px-4 py-2 bg-custom-pink text-white rounded-full hover:bg-custom-green hover:text-black font-bold">Estadísticas</Link>
       </div>
       <div className="flex items-center">
         {isAuthenticated ? (

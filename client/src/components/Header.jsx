@@ -56,7 +56,7 @@ const Header = () => {
     const logoStyles = generateLogoStyles();
 
     return (
-        <header className="relative bg-blue-800 text-white py-4 mt-4 overflow-hidden">
+        <header className="relative bg-custom-blue text-white py-4 mt-4 overflow-hidden">
             {/* Contenedor de logos de equipos */}
             <div className="absolute inset-0 flex items-center justify-center hidden md:flex">
                 {logoStyles.map((style, index) => (
