@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest } from '../api/auth.js';
+import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest, logoutRequest } from '../api/auth.js';
 import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -26,6 +26,7 @@ export const AuthProvider = ({children}) => {
     //Vamos a leer el error que recibe en response
     const [errors, setErrors]= useState([]) //error se almacenará como arreglo 
     const [loading, setLoading] = useState(true)
+    //const navigate = useNavigate();
 
     //Cuando se llame la función, Hace la petición y cuando reciba la respuesta, los datos deben quedar almacenado en el usuario
     const signup = async (user)=> {
@@ -34,11 +35,11 @@ export const AuthProvider = ({children}) => {
             console.log(res.data);
             setIsAuthenticated(true);
             setUser(res.data);
-        }
-        catch(err) {
-            //console.log(err.response.data);
-            setErrors(err.response.data);
-
+        }catch(error){
+            if (Array.isArray(error.response.data)){
+                return setErrors(error.response.data);
+            }
+            setErrors([error.response.data.message]);
         }
     }
 
@@ -72,6 +73,17 @@ export const AuthProvider = ({children}) => {
             }
         } catch (error) {
             console.error("Error al eliminar la cuenta:", error.response?.data?.message || error.message);
+        }
+    }
+
+    const logout = async () => {
+        try {
+            console.log('Saliendo...')
+            const result = await logoutRequest();
+            setUser(null);
+            setIsAuthenticated(false);
+        } catch (error) {
+            console.error('Logout Error:', error);
         }
     }
     
@@ -126,6 +138,7 @@ export const AuthProvider = ({children}) => {
             singin,
             setUser,
             deleteAcount,
+            logout,
             loading,
             user, 
             isAuthenticated,

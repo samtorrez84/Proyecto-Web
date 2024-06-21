@@ -41,12 +41,7 @@ export const register = async (req,res) => {
         const token = await createAcccesToken({id: usuarioGuardado._id})
                 
         res.cookie('token', token); //Se envía por la cabecera
-        res.json({
-            message: 'Usuario creado satisfactoriamente'
-        })
 
-                
-        /*
         res.json({
             id: usuarioGuardado._id,
             nombre: usuarioGuardado.nombre,
@@ -54,7 +49,6 @@ export const register = async (req,res) => {
             createdAt: usuarioGuardado.createdAt,
             updatedAt: usuarioGuardado.updatedAt
         })
-         */
     }
     catch (e){
         if (e.code === 11000) { // Código de error de duplicado de MongoDB

@@ -18,6 +18,7 @@ function RegisterPage() {
     useEffect(() => {
       if(isAuthenticated){
         navigate('/main');
+        console.log('auth')
       }
     },  [isAuthenticated])
 

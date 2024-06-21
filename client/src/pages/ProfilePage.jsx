@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/LLA_LOGO.png'; // Importa la imagen del logo
 
 function ProfilePage() {
-  const { user, setUser, deleteAcount, isAuthenticated } = useAuth();
+  const { user, setUser, deleteAcount, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleDeleteAccount = async () => {
@@ -20,6 +20,14 @@ function ProfilePage() {
     }
   };
 
+  const handleLogout = async () => {
+    try{
+      await logout()
+    }catch (error) {
+        console.error("Error al eliminar la cuenta:", error.response?.data?.message || error.message);
+      }
+  }
+
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/login');
@@ -27,11 +35,12 @@ function ProfilePage() {
   }, [isAuthenticated, navigate]);
 
   return (
-    <div className="min-h-screen bg-custom-dark-900 text-gray-300 flex items-center justify-center">
+
+    <div className="h-screen bg-custom-dark-900 text-gray-300 flex items-center justify-center">
       <div className="max-w-4xl w-full mx-auto p-8 rounded-lg shadow-lg bg-custom-dark">
         <div className="flex flex-col items-center mb-8">
           <div className="relative mb-4">
-            <div className="bg-custom-dark-700 p-2 rounded-full shadow-md">
+            <div className="bg-custom-pink p-2 rounded-full shadow-md">
               <img src={logo} alt="LLA logo" className="h-24 w-24 rounded-full" />
             </div>
           </div>
@@ -48,16 +57,22 @@ function ProfilePage() {
   
         <div className="flex justify-center space-x-4">
           <button 
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+            className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300"
             onClick={handleDeleteAccount}
           >
             Eliminar Cuenta
           </button>
           <button 
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
+            className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300 ml-6 mr-6"
             // Aquí puedes añadir un onClick para manejar la edición del nombre
           >
             Editar Nombre
+          </button>
+          <button 
+            className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300"
+            onClick={handleLogout}
+          >
+            Cerrar sesión
           </button>
         </div>
       </div>
