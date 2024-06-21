@@ -20,7 +20,7 @@ const Navbar = () => {
         {isAuthenticated ? (
             <Link to="/profile" className="flex items-center">
                 <div className="flex items-center ml-4">
-                    <span className="text-white mr-2">Bienvenido {user.nombre}</span>
+                    <span className="text-white mr-2 hidden md:block">Bienvenido {user.nombre}</span>
                     <img src="src/assets/images/user.png" alt="User" className="h-8" />
                 </div>
             </Link>
