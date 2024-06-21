@@ -19,7 +19,7 @@ function LoginPage() {
   }, [isAuthenticated])
 
   return (
-    <div className='flex h-screen items-center justify-center bg-cover bg-center' style={{ backgroundImage: "url('/fondo1.png')" }}>
+    <div className='flex h-screen items-center justify-center bg-cover bg-center' >
         <div className='bg-opacity-50 bg-black max-w-md w-full p-8 rounded-md shadow-lg relative '>
                 <div className='absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 p-4 rounded-full'>
                     <img src={logo} className='h-8 w-8' /> {/* Agrega la imagen del logo */}

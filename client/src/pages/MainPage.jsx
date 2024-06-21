@@ -1,6 +1,6 @@
 function MainPage() {
   return (
-    <div  style={{ backgroundImage: "url('/fondo1.png')" }}>
+    <div>
       MainPage
     </div>
   )
