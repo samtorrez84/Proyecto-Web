@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom" //Librería para enrutado
 import { AuthProvider } from "./context/AuthContext"
-
 //importación de paginas
 import RegisterPage from "./pages/RegisterPage"
 import LoginPage from "./pages/LoginPage"

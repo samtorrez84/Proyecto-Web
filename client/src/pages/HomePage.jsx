@@ -1,7 +1,14 @@
-function HomePage() {
-  return (
-    <div>HomePage</div>
-  )
-}
+import React from 'react';
+import Header from '../components/Header';
+import PlayOffs from '../components/PlayOffs';
 
-export default HomePage
+const HomePage = () => {
+  return (
+    <div>
+      <Header />
+      <PlayOffs />
+    </div>
+  );
+};
+
+export default HomePage;
