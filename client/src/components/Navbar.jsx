@@ -6,7 +6,7 @@ const Navbar = () => {
   const { user, isAuthenticated } = useAuth();
 
   return (
-    <div className="flex items-center justify-between p-4 bg-gray-900">
+    <div className="flex items-center justify-between p-4 bg-gray-900" style={{ backgroundImage: "url('/fondo1.png')" }} >
       <div className="flex items-center">
         <Link to="/" className="flex items-center">
           <img src="src/assets/images/LLA_LOGO.png" alt="Logo" className="h-10" />

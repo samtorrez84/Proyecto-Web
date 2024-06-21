@@ -3,7 +3,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-4">
+    <footer className="bg-gray-900 text-white py-4" style={{ backgroundImage: "url('/fondo1.png')" }} >
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex space-x-4 hidden md:block">
           <a href="#ayuda" className="hover:text-pink-500">Ayuda</a>
