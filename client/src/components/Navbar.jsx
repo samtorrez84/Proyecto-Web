@@ -25,7 +25,7 @@ const Navbar = () => {
                 </div>
             </Link>
         ) : (
-          <Link to="/login" className="mx-2 px-4 py-2 bg-blue-500 text-white rounded">Iniciar Sesión</Link>
+          <Link to="/login" className="mx-2 px-4 py-2 bg-custom-blue text-white rounded-full hover:bg-custom-green hover:text-black font-bold">Iniciar Sesión</Link>
         )}
       </div>
     </div>

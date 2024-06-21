@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage"
 import HomePage from "./pages/HomePage"
 import ProfilePage from "./pages/ProfilePage"
 import MainPage from "./pages/MainPage"
+import TestPage from "./pages/TestPage"
 
 import ProtecterRouter from "./ProtecterRouter"
 
@@ -23,7 +24,8 @@ function App(){
             <Route path='/' element={<HomePage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de */}
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de RegisterPage */}
-            
+            <Route path='/test' element={<TestPage/>}/>
+
             <Route element={<ProtecterRouter/>}>
               <Route path='/main' element={<MainPage/>}/>
               <Route path='/profile' element={<ProfilePage/>}/>
