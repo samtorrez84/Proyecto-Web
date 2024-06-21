@@ -24,6 +24,7 @@ function App(){
             <Route path='/' element={<HomePage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de */}
             <Route path='/login' element={<LoginPage/>}/>
             <Route path='/register' element={<RegisterPage/>}/> {/* Ruta inicial que ejecuta un element que nos lleva a la página de RegisterPage */}
+            
             <Route element={<ProtecterRouter/>}>
               <Route path='/main' element={<MainPage/>}/>
               <Route path='/profile' element={<ProfilePage/>}/>

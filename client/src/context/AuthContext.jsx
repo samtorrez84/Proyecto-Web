@@ -32,8 +32,8 @@ export const AuthProvider = ({children}) => {
         try{
             const res = await registerRequest(user);
             console.log(res.data);
-            setUser(res.data);
             setIsAuthenticated(true);
+            setUser(res.data);
         }
         catch(err) {
             //console.log(err.response.data);
@@ -57,9 +57,22 @@ export const AuthProvider = ({children}) => {
     }
 
     const deleteAcount = async (id) => {
-        console.log(`Quieres borrar el id: ${id}`)
-        const res = await deleteAcountRequest(id)
-        console.log(res.data)
+        try {
+            console.log(`Quieres borrar el id: ${id}`);
+            const response = await deleteAcountRequest(id);
+            console.log(response.data);
+    
+            // Asumiendo que la respuesta del servidor es exitosa y la cuenta ha sido eliminada
+            if (response.status === 200) {
+                // Limpia la información del usuario y actualiza el estado de autenticación
+                setIsAuthenticated(false);
+                setUser(null);
+                // Limpia cualquier cookie o token de sesión si es necesario
+                // Cookies.remove('token'); // Si estás usando js-cookie por ejemplo
+            }
+        } catch (error) {
+            console.error("Error al eliminar la cuenta:", error.response?.data?.message || error.message);
+        }
     }
     
      useEffect(() => {
@@ -102,6 +115,7 @@ export const AuthProvider = ({children}) => {
         }
         checkLogin();
      }, []);
+      
      
 
 

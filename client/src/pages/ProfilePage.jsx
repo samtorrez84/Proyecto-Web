@@ -1,9 +1,9 @@
+import React, { useEffect } from 'react'; // Asegúrate de incluir useEffect aquí
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
-//import { deleteAccount } from '../api/userService'; // Asegúrate que la ruta de importación es correcta
 
 function ProfilePage() {
-  const { user, setUser, deleteAcount } = useAuth();
+  const { user, setUser, deleteAcount, isAuthenticated } = useAuth(); // Asegúrate de incluir isAuthenticated
   const navigate = useNavigate();
 
   const handleDeleteAccount = async () => {
@@ -11,7 +11,6 @@ function ProfilePage() {
       try {
         await deleteAcount(user.id);
         console.log("Cuenta eliminada con éxito");
-        //Cookies.remove('token'); // Elimina la cookie del navegador
         setUser(null); // Limpia el usuario del contexto
         navigate('/'); // Redirige al usuario a la página principal
       } catch (error) {
@@ -19,6 +18,12 @@ function ProfilePage() {
       }
     }
   };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center ">
@@ -38,7 +43,7 @@ function ProfilePage() {
           </button>
           <button 
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            
+            // Aquí puedes añadir un onClick para manejar la edición del nombre
           >
             Editar Nombre
           </button>
