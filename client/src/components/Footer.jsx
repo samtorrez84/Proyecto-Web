@@ -1,9 +1,15 @@
 import React from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { useLocation } from 'react-router-dom'; // Importar useLocation
 
 const Footer = () => {
+  const location = useLocation(); // Obtener la ubicación actual
+
+  // Verificar si la ubicación actual es la ruta raíz
+  const isRootPath = location.pathname === '/';
+
   return (
-    <footer className="bg-gray-900 text-white py-4" style={{ backgroundImage: "url('/fondo1.png')" }}>
+    <footer className={`bg-gray-900 text-white py-4 ${isRootPath ? 'bg-transparent' : ''}`} style={isRootPath ? null : { backgroundImage: "url('/fondo1.png')" }}>
       <div className="container mx-auto flex flex-col md:flex-row justify-center items-center md:justify-between">
         <div className="flex space-x-4 mb-4 md:mb-0">
           <a href="#ayuda" className="hover:text-pink-500">Ayuda</a>
