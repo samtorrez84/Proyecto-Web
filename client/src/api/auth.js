@@ -9,3 +9,7 @@ export const loginRequest = usuario => axios.post(`/login`, usuario)
 export const verifyTokenRequest = () => axios.get('/verify')
 
 export const deleteAcountRequest = (id) => axios.delete(`/profile/${id}`)
+
+export const logoutRequest = () => axios.post('/logout') 
+
+export const updateUserNameRequest = (id, nombre) => axios.put(`/updateUserName/${id}`, { nombre })

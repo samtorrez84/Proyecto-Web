@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest } from '../api/auth.js';
+import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest, logoutRequest, updateUserNameRequest } from '../api/auth.js';
 import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -26,19 +26,20 @@ export const AuthProvider = ({children}) => {
     //Vamos a leer el error que recibe en response
     const [errors, setErrors]= useState([]) //error se almacenará como arreglo 
     const [loading, setLoading] = useState(true)
+    //const navigate = useNavigate();
 
     //Cuando se llame la función, Hace la petición y cuando reciba la respuesta, los datos deben quedar almacenado en el usuario
     const signup = async (user)=> {
         try{
             const res = await registerRequest(user);
             console.log(res.data);
-            setUser(res.data);
             setIsAuthenticated(true);
-        }
-        catch(err) {
-            //console.log(err.response.data);
-            setErrors(err.response.data);
-
+            setUser(res.data);
+        }catch(error){
+            if (Array.isArray(error.response.data)){
+                return setErrors(error.response.data);
+            }
+            setErrors([error.response.data.message]);
         }
     }
 
@@ -57,9 +58,33 @@ export const AuthProvider = ({children}) => {
     }
 
     const deleteAcount = async (id) => {
-        console.log(`Quieres borrar el id: ${id}`)
-        const res = await deleteAcountRequest(id)
-        console.log(res.data)
+        try {
+            console.log(`Quieres borrar el id: ${id}`);
+            const response = await deleteAcountRequest(id);
+            console.log(response.data);
+    
+            // Asumiendo que la respuesta del servidor es exitosa y la cuenta ha sido eliminada
+            if (response.status === 200) {
+                // Limpia la información del usuario y actualiza el estado de autenticación
+                setIsAuthenticated(false);
+                setUser(null);
+                // Limpia cualquier cookie o token de sesión si es necesario
+                // Cookies.remove('token'); // Si estás usando js-cookie por ejemplo
+            }
+        } catch (error) {
+            console.error("Error al eliminar la cuenta:", error.response?.data?.message || error.message);
+        }
+    }
+
+    const logout = async () => {
+        try {
+            console.log('Saliendo...')
+            const result = await logoutRequest();
+            setUser(null);
+            setIsAuthenticated(false);
+        } catch (error) {
+            console.error('Logout Error:', error);
+        }
     }
     
      useEffect(() => {
@@ -102,8 +127,23 @@ export const AuthProvider = ({children}) => {
         }
         checkLogin();
      }, []);
+      
      
-
+     const updateUserName = async (id, nombre) => {
+        console.log(`Actualizando nombre de usuario con id: ${id} y nombre: ${nombre}`);
+        try {
+            const response = await updateUserNameRequest(id, nombre);
+            console.log("Nombre actualizado con éxito:", response);
+            console.log(response); // Para depuración, muestra la respuesta del servidor
+            setUser(response); // Actualiza el estado de usuario con la respuesta del servidor
+            return response; // Opcional: podrías devolver la respuesta si necesitas manejarla en otro lugar
+        } catch (error) {
+            console.error("Error al actualizar el nombre:", error.response?.data?.message || error.message);
+            setErrors([error.response?.data?.message || error.message]);
+            throw error; // Lanza el error para manejarlo donde se llama a updateUserName
+        }
+    };
+    
 
     return(
         <AuthContext.Provider 
@@ -112,6 +152,8 @@ export const AuthProvider = ({children}) => {
             singin,
             setUser,
             deleteAcount,
+            updateUserName,
+            logout,
             loading,
             user, 
             isAuthenticated,
