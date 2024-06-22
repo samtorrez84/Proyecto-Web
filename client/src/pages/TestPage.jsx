@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 function TestPage() {
   return (
@@ -13,9 +12,7 @@ function TestPage() {
         </Link>
        
       </div>
-      <footer className="w-full bg-black bg-opacity-70 text-white py-4 text-center">
-        <p>&copy; 2024 LLA. Todos los derechos reservados.</p>
-      </footer>
+     
     </div>
   );
 }

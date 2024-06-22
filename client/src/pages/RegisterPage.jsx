@@ -17,7 +17,7 @@ function RegisterPage() {
 
     useEffect(() => {
       if(isAuthenticated){
-        navigate('/main');
+        navigate('/equipos');
         console.log('auth')
       }
     },  [isAuthenticated])

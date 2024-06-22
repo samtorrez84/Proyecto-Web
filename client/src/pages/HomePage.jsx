@@ -1,32 +1,20 @@
 import React from 'react';
-import Header from '../components/Header';
-import PlayOffs from '../components/PlayOffs';
-import PlayerDisplay from '../components/PlayerDisplay';
-import pan from '../assets/images/players/pan.webp';
+import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+function HomePage() {
   return (
-    <div>
-      <Header />
-      <div className="flex flex-col items-center md:flex-row md:justify-center md:items-start py-10">
-        <div className="md:mr-16">
-          <PlayOffs />
-        </div>
-        <div className='py-6 flex flex-col justify-center items-center relative'>
-          <div className="bg-green-500 text-black font-bold py-2 px-4 rounded-full inline-block mb-4 w-full text-center">MVP</div>
-            <PlayerDisplay
-              playerName="pan"
-              teamName="Isurus"
-              imageUrl={pan}
-              position="jungle"
-            />
-            <div className="flex flex-col items-center justify-center relative z-10 text-center">
-              <p className="font-bold bg-[#BCBEFA] text-black py-2 px-4 rounded-full inline-block mb-4 mt-2">Pan</p>
-            </div>
-        </div>
+    <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: `url('/fondohome.jpg')` }}>
+      <div className="flex-grow flex flex-col items-center justify-center text-center text-white px-4 bg-black bg-opacity-50">
+        <h1 className="text-5xl font-bold mb-4">Bienvenido</h1>
+        <p className="text-lg mb-6">Descubre lo último en partidos de LOL</p>
+        <Link to="/register" className="bg-custom-blue hover:bg-custom-pink text-white font-bold py-3 px-6 rounded-full transition duration-300 mb-4">
+          UNIRSE GRATIS
+        </Link>
+       
       </div>
+     
     </div>
   );
-};
+}
 
 export default HomePage;

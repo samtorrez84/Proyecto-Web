@@ -15,7 +15,7 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    if (isAuthenticated) navigate('/main')
+    if (isAuthenticated) navigate('/equipos')
   }, [isAuthenticated])
 
   return (

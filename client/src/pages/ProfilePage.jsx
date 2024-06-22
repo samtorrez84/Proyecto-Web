@@ -23,6 +23,7 @@ function ProfilePage() {
   const handleLogout = async () => {
     try {
       await logout();
+      navigate('/');
     } catch (error) {
       console.error("Error al cerrar sesión:", error.response?.data?.message || error.message);
     }
@@ -64,12 +65,6 @@ function ProfilePage() {
         <div className="flex justify-center space-x-4">
           <button 
             className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300"
-            onClick={handleDeleteAccount}
-          >
-            Eliminar Cuenta
-          </button>
-          <button 
-            className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300"
             onClick={navigateToEditName}
           >
             Editar Nombre
@@ -79,6 +74,12 @@ function ProfilePage() {
             onClick={handleLogout}
           >
             Cerrar sesión
+          </button>
+          <button 
+            className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300"
+            onClick={handleDeleteAccount}
+          >
+            Eliminar Cuenta
           </button>
         </div>
       </div>
