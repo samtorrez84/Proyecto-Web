@@ -9,6 +9,7 @@ import UpdateUserName from "./pages/UpdateUserNamePage"
 import EquiposPage from "./pages/EquiposPage"
 import StatisticsPage from "./pages/StatisticsPage"
 import ProtecterRouter from "./ProtecterRouter"
+import NotFoundPage from "./pages/NotFounPage"
 
 import Layout from "./components/Layout"
 
@@ -33,6 +34,7 @@ function App(){
             </Route>
             
             {/* <Route path='/inicio' element={<h1> Hola1 </h1>}/> */}
+          <Route path="*" element={<NotFoundPage />} /> {/* Ruta para manejar páginas no encontradas */}
           </Routes>
         </Layout>
       </BrowserRouter>  {/*Configuración */}

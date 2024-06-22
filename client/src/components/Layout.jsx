@@ -4,8 +4,8 @@ import Footer from './Footer';
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const excludeNavbarPaths = ['/login', '/register', '/test'];
-  const excludeFooterPaths = ['/login', '/register', '/test'];
+  const excludeNavbarPaths = ['/login', '/register', '*'];
+  const excludeFooterPaths = ['/login', '/register'];
 
   return (
     <div className="flex flex-col min-h-screen">

@@ -4,6 +4,7 @@ import cors from 'cors';
 
 //Agregar las rutas
 import authRoutes from './routes/auth.routes.js';
+import jugadoresRouter from './routes/jugadores.routes.js';
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(cookieParser()); // Este middleware parsea las cookies
 
 //Definir rutas primero con /api
 app.use('/api',authRoutes);
+app.use('/api',jugadoresRouter);
 
 export default app;
