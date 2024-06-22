@@ -18,7 +18,7 @@ const HomePage = () => {
               playerName="pan"
               teamName="Isurus"
               imageUrl={pan}
-              position="jungle"
+              position="top"
             />
             <div className="flex flex-col items-center justify-center relative z-10 text-center">
               <p className="font-bold bg-[#BCBEFA] text-black py-2 px-4 rounded-full inline-block mb-4 mt-2">Pan</p>
