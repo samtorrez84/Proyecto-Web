@@ -13,6 +13,11 @@ import midIcon from '../assets/images/positions/mid.png';
 import topIcon from '../assets/images/positions/top.png';
 import jungleIcon from '../assets/images/positions/jungle.png';
 
+import pan from '../assets/images/players/pan.webp';
+import josedeodo from '../assets/images/players/josedeodo.webp';
+import lynoz from '../assets/images/players/lynoz.webp';
+import kaze from '../assets/images/players/kaze.webp';
+
 const teamLogos = {
   Estrál: estral,
   Leviatan: leviatan,
@@ -30,9 +35,17 @@ const positionIcons = {
   jungle: jungleIcon
 };
 
+const PlayerIcon = {
+  "../assets/images/players/pan.webp": pan,
+  "../assets/images/players/josedeodo.webp": josedeodo,
+  "../assets/images/players/lynoz.webp": lynoz,
+  "../assets/images/players/kaze.webp": kaze
+};
+
 const PlayerDisplay = ({ playerName, teamName, imageUrl, position }) => {
   const teamLogo = teamLogos[teamName] || '';
   const positionIcon = positionIcons[position] || '';
+  const playerIcon = PlayerIcon[imageUrl] || '';
 
   return (
     <div className="text-center p-4 rounded-xl relative">
@@ -42,7 +55,7 @@ const PlayerDisplay = ({ playerName, teamName, imageUrl, position }) => {
       {positionIcon && (
         <div className="absolute top-3 left-3 w-7 h-7 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${positionIcon})` }}></div>
       )}
-      <img src={imageUrl} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl" />
+      <img src={playerIcon} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl" />
     </div>
   );
 };

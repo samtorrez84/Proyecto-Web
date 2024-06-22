@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '../components/Header';
 import PlayOffs from '../components/PlayOffs';
 import PlayerDisplay from '../components/PlayerDisplay';
-import pan from '../assets/images/players/pan.webp';
 
 const EquiposPage= () => {
     return (
@@ -17,7 +16,7 @@ const EquiposPage= () => {
               <PlayerDisplay
                 playerName="pan"
                 teamName="Isurus"
-                imageUrl={pan}
+                imageUrl="../assets/images/players/pan.webp"
                 position="jungle"
               />
               <div className="flex flex-col items-center justify-center relative z-10 text-center">
