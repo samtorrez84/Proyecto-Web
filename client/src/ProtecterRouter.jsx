@@ -2,14 +2,18 @@ import { useAuth } from "./context/AuthContext"
 import {Navigate, Outlet} from 'react-router-dom'
 
 function ProtecterRouter() {
-   const {loading, isAuthenticated} = useAuth();
-   console.log(`desde protect router ${loading}, ${isAuthenticated}`)
+  const { loading, isAuthenticated } = useAuth();
 
-   if (loading) return <h1>Loading...</h1>
-   {/* Si el usuario no esta autenticado lo direcciona a /login sino continua su ejecución al elemento normal */}
-   if(!isAuthenticated && !loading) return <Navigate to='/login' replace/>;
+  if (loading) {
+     return <h1>Loading...</h1>; // Considerar un spinner o un componente de carga más atractivo
+  }
 
-  return <Outlet/>;
+  // Agrega una condición para manejar el estado intermedio
+  if (!isAuthenticated && !loading) {
+     console.log("Redirecting to login because user is not authenticated.");
+     return <Navigate to='/login' replace />;
+  }
+
+  return <Outlet />;
 }
-
 export default ProtecterRouter
