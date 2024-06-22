@@ -35,7 +35,7 @@ const PlayerDisplay = ({ playerName, teamName, imageUrl, position }) => {
   const positionIcon = positionIcons[position] || '';
 
   return (
-    <div className="text-center bg-black p-4 rounded-xl relative">
+    <div className="text-center p-4 rounded-xl relative">
       {teamLogo && (
         <div className="absolute top-2 right-2 w-10 h-10 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${teamLogo})` }}></div>
       )}

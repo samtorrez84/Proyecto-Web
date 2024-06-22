@@ -28,23 +28,23 @@ const positionIcons = {
     jungle: jungleIcon
 };
 
-const PlayerDetailsDisplay = ({ playerName, teamName, imageURL, position, details }) => {
+const PlayerDetailsDisplay = ({ playerName, teamName, imageURL, position, details, className }) => {
     const teamLogo = teamLogos[teamName] || '';
     const positionIcon = positionIcons[position] || '';
 
     const logoStyle = {
-        opacity: 0.8, // Aplica opacidad solo si hay un logo de equipo
+        opacity: 0.8,
     };
 
     return (
-        <div className="text-center bg-custom-blue p-4 rounded-xl relative flex items-center">
-            <img src={imageURL} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl mr-4" />
-            <div className="text-white flex flex-col justify-center items-start">
+        <div className={`relative text-center bg-custom-blue p-4 rounded-xl flex flex-col items-center md:flex-row md:items-start md:justify-between ${className}`}>
+            <img src={imageURL} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl mb-4 md:mb-0 md:mr-4" />
+            <div className="text-white flex flex-col justify-center items-center md:items-start">
                 <h3 className="text-xl font-bold">{playerName}</h3>
                 <p className="text-sm">{details}</p>
             </div>
             {teamLogo && (
-                <img src={teamLogo} alt={`Team Logo ${teamName}`} className="w-24 h-24 rounded-xl ml-4" style={logoStyle} />
+                <img src={teamLogo} alt={`Team Logo ${teamName}`} className="w-24 h-24 rounded-xl mt-4 md:mt-0 md:ml-4" style={logoStyle} />
             )}
             {positionIcon && (
                 <div className="absolute top-3 left-3 w-7 h-7 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${positionIcon})` }}></div>

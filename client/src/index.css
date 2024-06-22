@@ -10,3 +10,17 @@ body{
 .bg-black-50 {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.player-details-container {
+  position: relative;
+}
+
+.position-icon {
+  position: absolute;
+  top: 0.75rem; /* Equivalente a top-3 */
+  left: 0.75rem; /* Equivalente a left-3 */
+  width: 1.75rem; /* Equivalente a w-7 */
+  height: 1.75rem; /* Equivalente a h-7 */
+  background-size: contain;
+  background-repeat: no-repeat;
+}
