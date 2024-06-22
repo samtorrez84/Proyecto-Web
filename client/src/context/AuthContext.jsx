@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest, logoutRequest } from '../api/auth.js';
+import { registerRequest, loginRequest, verifyTokenRequest, deleteAcountRequest, logoutRequest, updateUserNameRequest } from '../api/auth.js';
 import Cookies from 'js-cookie'
 
 export const AuthContext = createContext()
@@ -129,7 +129,21 @@ export const AuthProvider = ({children}) => {
      }, []);
       
      
-
+     const updateUserName = async (id, nombre) => {
+        console.log(`Actualizando nombre de usuario con id: ${id} y nombre: ${nombre}`);
+        try {
+            const response = await updateUserNameRequest(id, nombre);
+            console.log("Nombre actualizado con éxito:", response);
+            console.log(response); // Para depuración, muestra la respuesta del servidor
+            setUser(response); // Actualiza el estado de usuario con la respuesta del servidor
+            return response; // Opcional: podrías devolver la respuesta si necesitas manejarla en otro lugar
+        } catch (error) {
+            console.error("Error al actualizar el nombre:", error.response?.data?.message || error.message);
+            setErrors([error.response?.data?.message || error.message]);
+            throw error; // Lanza el error para manejarlo donde se llama a updateUserName
+        }
+    };
+    
 
     return(
         <AuthContext.Provider 
@@ -138,6 +152,7 @@ export const AuthProvider = ({children}) => {
             singin,
             setUser,
             deleteAcount,
+            updateUserName,
             logout,
             loading,
             user, 

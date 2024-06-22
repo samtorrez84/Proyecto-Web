@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/LLA_LOGO.png'; // Importa la imagen del logo
@@ -33,6 +33,10 @@ function ProfilePage() {
       navigate('/login');
     }
   }, [isAuthenticated, navigate]);
+  
+  const navigateToEditName = () => {
+    navigate('/updateUserName');
+  };
 
   return (
     <div className="min-h-screen bg-custom-dark-900 text-gray-300 flex items-center justify-center">
@@ -66,7 +70,7 @@ function ProfilePage() {
           </button>
           <button 
             className="bg-custom-blue hover:bg-custom-green text-white hover:text-black font-bold py-2 px-4 rounded-full transition duration-300"
-            // Aquí puedes añadir un onClick para manejar la edición del nombre
+            onClick={navigateToEditName}
           >
             Editar Nombre
           </button>

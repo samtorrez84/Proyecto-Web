@@ -148,3 +148,34 @@ export const deleteProfile = async(req, res) => {
     res.status(200).send({ message: 'Cuenta eliminada con éxito' });
     // res.json(usuario) // Esto está de más y puede causar errores, ya enviaste una respuesta.
 };
+
+export const updateUserName = async (req, res) => {
+    const { id } = req.params; // ID del usuario que queremos actualizar
+    const { nombre } = req.body; // Nuevo nombre que queremos asignar
+
+    try {
+        // Buscar el usuario por ID y actualizar su nombre
+        const usuarioActualizado = await Usuario.findByIdAndUpdate(
+            id,
+            { nombre },
+            { new: true } // Esta opción hace que se retorne el documento actualizado
+        );
+
+        // Si el usuario no existe, devolver un error
+        if (!usuarioActualizado) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        // Devolver el usuario actualizado
+        return res.json({
+            id: usuarioActualizado._id,
+            nombre: usuarioActualizado.nombre,
+            email: usuarioActualizado.email,
+            createdAt: usuarioActualizado.createdAt,
+            updatedAt: usuarioActualizado.updatedAt
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({ message: 'Error en el servidor' });
+    }
+};

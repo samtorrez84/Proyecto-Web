@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage"
 import ProfilePage from "./pages/ProfilePage"
 import MainPage from "./pages/MainPage"
 import TestPage from "./pages/TestPage"
+import UpdateUserName from "./pages/UpdateUserNamePage"
 
 import ProtecterRouter from "./ProtecterRouter"
 
@@ -29,6 +30,7 @@ function App(){
             <Route element={<ProtecterRouter/>}>
               <Route path='/main' element={<MainPage/>}/>
               <Route path='/profile' element={<ProfilePage/>}/>
+              <Route path="/updateUserName" element={<UpdateUserName/>}/>
             </Route>
             
             {/* <Route path='/inicio' element={<h1> Hola1 </h1>}/> */}
