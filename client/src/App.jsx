@@ -5,11 +5,9 @@ import RegisterPage from "./pages/RegisterPage"
 import LoginPage from "./pages/LoginPage"
 import HomePage from "./pages/HomePage"
 import ProfilePage from "./pages/ProfilePage"
-import TestPage from "./pages/TestPage"
 import UpdateUserName from "./pages/UpdateUserNamePage"
-import StatsPage from "./pages/StatsPage"
 import EquiposPage from "./pages/EquiposPage"
-
+import StatisticsPage from "./pages/StatisticsPage"
 import ProtecterRouter from "./ProtecterRouter"
 
 import Layout from "./components/Layout"
@@ -29,9 +27,9 @@ function App(){
 
             <Route element={<ProtecterRouter/>}>
               <Route path='/equipos' element={<EquiposPage/>}/>
-              <Route path='/estadisticas' element={<StatsPage/>}/>
               <Route path='/profile' element={<ProfilePage/>}/>
               <Route path="/updateUserName" element={<UpdateUserName/>}/>
+              <Route path="/estadisticas" element={<StatisticsPage/>}/>
             </Route>
             
             {/* <Route path='/inicio' element={<h1> Hola1 </h1>}/> */}

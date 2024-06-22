@@ -10,9 +10,7 @@ function HomePage() {
         <Link to="/register" className="bg-custom-blue hover:bg-custom-pink text-white font-bold py-3 px-6 rounded-full transition duration-300 mb-4">
           UNIRSE GRATIS
         </Link>
-       
       </div>
-     
     </div>
   );
 }
