@@ -56,7 +56,7 @@ const Header = () => {
     const logoStyles = generateLogoStyles();
 
     return (
-        <header className="relative bg-custom-blue text-white py-4 mt-4 overflow-hidden">
+        <header className="relative bg-custom-blue text-white py-10 mt-4 overflow-hidden">
             {/* Contenedor de logos de equipos */}
             <div className="absolute inset-0 flex items-center justify-center hidden md:flex">
                 {logoStyles.map((style, index) => (
@@ -69,7 +69,7 @@ const Header = () => {
 
             {/* Contenido del encabezado */}
             <div className="container mx-auto flex justify-between items-center relative z-10">
-                <p className="text-lg hidden md:block">Split de Primavera</p>
+                <p className="text-lg hidden md:block md:w-1/4">Split de Primavera</p>
                 <img src={logo} alt="Logo" className="h-20 mx-auto relative z-10" />
                 <h1 className="text-3xl font-bold hidden md:block">Liga Latinoamérica</h1>
             </div>

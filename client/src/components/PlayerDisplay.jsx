@@ -7,6 +7,12 @@ import all_knights from '../assets/images/equipos/all_knights.png';
 import six_karma from '../assets/images/equipos/sixkarma.png';
 import raibow7 from '../assets/images/equipos/raibow7.png';
 
+import adcIcon from '../assets/images/positions/adc.png';
+import supportIcon from '../assets/images/positions/support.png';
+import midIcon from '../assets/images/positions/mid.png';
+import topIcon from '../assets/images/positions/top.png';
+import jungleIcon from '../assets/images/positions/jungle.png';
+
 const teamLogos = {
   Estrál: estral,
   Leviatan: leviatan,
@@ -16,25 +22,27 @@ const teamLogos = {
   "Raibow7": raibow7
 };
 
+const positionIcons = {
+  adc: adcIcon,
+  support: supportIcon,
+  mid: midIcon,
+  top: topIcon,
+  jungle: jungleIcon
+};
+
 const PlayerDisplay = ({ playerName, teamName, imageUrl, position }) => {
   const teamLogo = teamLogos[teamName] || '';
+  const positionIcon = positionIcons[position] || '';
 
   return (
-    <div className="text-white py-6 flex flex-col justify-center items-center relative">
-      <div className="bg-green-500 text-black font-bold py-2 px-4 rounded-full inline-block mb-4">MVP</div>
-      <div className="text-center bg-black p-4 rounded-xl relative">
-        {teamLogo && (
-          <div className="absolute top-2 right-2 w-10 h-10 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${teamLogo})` }}></div>
-        )}
-        <div className="flex flex-col items-center justify-center relative z-10">
-          <img src={imageUrl} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl mb-4" />
-          <div className="text-center">
-            <p className="text-xl font-bold">{playerName}</p>
-            <p className="text-sm">{teamName}</p>
-            <p className="text-sm">{position}</p>
-          </div>
-        </div>
-      </div>
+    <div className="text-center bg-black p-4 rounded-xl relative">
+      {teamLogo && (
+        <div className="absolute top-2 right-2 w-10 h-10 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${teamLogo})` }}></div>
+      )}
+      {positionIcon && (
+        <div className="absolute top-3 left-3 w-7 h-7 bg-contain bg-no-repeat" style={{ backgroundImage: `url(${positionIcon})` }}></div>
+      )}
+      <img src={imageUrl} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl" />
     </div>
   );
 };
