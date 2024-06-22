@@ -54,7 +54,7 @@ const UpdateUserName = () => {
                             required
                         />
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between space-x-4">
                         <button type="submit" className="w-1/2 bg-custom-blue hover:bg-custom-green text-white font-bold py-2 px-4 rounded-full transition duration-300 focus:outline-none">
                             Actualizar Nombre
                         </button>
