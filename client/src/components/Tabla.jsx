@@ -18,13 +18,13 @@ const Tabla = ({ datos }) => {
             <tr key={dato.ranking}>
               <td className="border px-4 py-2">{dato.ranking}</td>
               <td className="border px-2 py-2">
-                <div className="flex items-center">
-                  <div className="w-1/3 lg:w-2/5">{dato.jugador}</div> {/* Ancho ajustable */}
-                  <div className="ml-2">
+                <div className="flex flex-col lg:flex-row items-center">
+                  <div className="w-full lg:w-2/5 flex justify-center lg:justify-start">{dato.jugador}</div> {/* Ancho ajustable */}
+                  <div className="ml-0 lg:ml-2 mt-2 lg:mt-0">
                     <PlayerDisplay
                       playerName={dato.jugador}
-                      teamName={dato.team}
-                      imageUrl={dato.url_foto}
+                      url_team={dato.url_team}
+                      url_foto={dato.url_foto}
                       position={dato.position}
                     />
                   </div>

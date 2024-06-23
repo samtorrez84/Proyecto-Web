@@ -5,6 +5,7 @@ import isurus from '../assets/images/equipos/Isurus.png';
 import all_knights from '../assets/images/equipos/all_knights.png';
 import six_karma from '../assets/images/equipos/sixkarma.png';
 import raibow7 from '../assets/images/equipos/raibow7.png';
+
 import adcIcon from '../assets/images/positions/adc.png';
 import supportIcon from '../assets/images/positions/support.png';
 import midIcon from '../assets/images/positions/mid.png';

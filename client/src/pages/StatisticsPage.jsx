@@ -5,13 +5,12 @@ import pan from '../assets/images/players/pan.webp';
 import josedeodo from '../assets/images/players/josedeodo.webp';
 import lynoz from '../assets/images/players/lynoz.webp';
 
-import { obtenerJugadoresRequest } from '../api/jugadores'; // Importa la función correcta para obtener jugadores
+import { obtenerJugadoresRequest, obtenerJugadorPorNombre } from '../api/jugadores'; // Importa la función correcta para obtener jugadores
 
 const StatisticsPage = () => {
     const [jugadores, setJugadores] = useState([]);
     const [ordenMVPs, setOrdenMVPs] = useState(true); // Estado para controlar la ordenación por MVPs
     const [ordenKDA, setOrdenKDA] = useState(false); // Estado para controlar la ordenación por KDA
-
     useEffect(() => {
         const fetchJugadores = async () => {
             try {
@@ -28,6 +27,19 @@ const StatisticsPage = () => {
         };
 
         fetchJugadores();
+    }, []);
+
+    useEffect(() => {
+        const fetchJugador = async () => {
+            try {
+                const response = await obtenerJugadorPorNombre('Pan'); // Llama a la función correcta para obtener un jugador por nombre
+                console.log('Jugador:', response.data);
+            } catch (error) {
+                console.error('Error al obtener el jugador:', error);
+            }
+        };
+
+        fetchJugador();
     }, []);
 
     // Función para cambiar el orden por MVPs
@@ -53,7 +65,8 @@ const StatisticsPage = () => {
 
         setJugadores(jugadoresOrdenados);
     };
-
+    
+    
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row md:flex-wrap md:justify-around space-y-4 md:space-y-0">
@@ -102,7 +115,8 @@ const StatisticsPage = () => {
                 kda: jugador.estadisticas.kda, // Valor KDA del jugador
                 url_foto: jugador.url_foto, // URL de la foto del jugador
                 position: jugador.posicion, // Posición del jugador
-                team: jugador.equipo.nombre // Nombre del equipo del jugador
+                team: jugador.equipo.nombre, // Nombre del equipo del jugador
+                url_team: jugador.equipo.url_logo // URL del logo del equipo del jugador
             }))} />
         </div>
     );
