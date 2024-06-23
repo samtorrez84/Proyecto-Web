@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PlayerDetailsDisplay from '../components/PlayerDetailsDisplay';
 import Tabla from '../components/Tabla';
-import pan from '../assets/images/players/pan.webp';
-import josedeodo from '../assets/images/players/josedeodo.webp';
-import lynoz from '../assets/images/players/lynoz.webp';
 
 import { obtenerJugadoresRequest, obtenerJugadorPorNombre } from '../api/jugadores'; // Importa la función correcta para obtener jugadores
 
@@ -11,6 +8,11 @@ const StatisticsPage = () => {
     const [jugadores, setJugadores] = useState([]);
     const [ordenMVPs, setOrdenMVPs] = useState(true); // Estado para controlar la ordenación por MVPs
     const [ordenKDA, setOrdenKDA] = useState(false); // Estado para controlar la ordenación por KDA
+
+    const [jugadormvp, setJugadormvp] = useState(null);
+    const [jugadorAsesinato, setJugadorAsesinato] = useState(null);
+    const [jugadorKP, setJugadorKP] = useState(null);
+
     useEffect(() => {
         const fetchJugadores = async () => {
             try {
@@ -32,15 +34,36 @@ const StatisticsPage = () => {
     useEffect(() => {
         const fetchJugador = async () => {
             try {
-                const response = await obtenerJugadorPorNombre('Pan'); // Llama a la función correcta para obtener un jugador por nombre
-                console.log('Jugador:', response.data);
+                const response = await obtenerJugadorPorNombre('Pan');
+                setJugadormvp(response.data);
             } catch (error) {
                 console.error('Error al obtener el jugador:', error);
             }
         };
 
+        const fetchJugadorAsesinato = async () => {
+            try {
+                const response = await obtenerJugadorPorNombre('Josedeodo');
+                setJugadorAsesinato(response.data);
+            } catch (error) {
+                console.error('Error al obtener el jugador:', error);
+            }
+        }
+
+        const fetchJugadorKP = async () => {
+            try {
+                const response = await obtenerJugadorPorNombre('Lynoz');
+                setJugadorKP(response.data);
+            } catch (error) {
+                console.error('Error al obtener el jugador:', error);
+            }
+        }
+
         fetchJugador();
+        fetchJugadorAsesinato();
+        fetchJugadorKP();
     }, []);
+
 
     // Función para cambiar el orden por MVPs
     const toggleOrdenMVPs = () => {
@@ -71,26 +94,26 @@ const StatisticsPage = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex flex-col md:flex-row md:flex-wrap md:justify-around space-y-4 md:space-y-0">
                 <PlayerDetailsDisplay 
-                    playerName="PAN"
-                    teamName="Isurus"
-                    imageURL={pan}
+                    playerName={jugadormvp?.nickname}
+                    teamName={jugadormvp?.equipo.nombre}
+                    url_foto={jugadormvp?.url_foto}
                     position="top"
                     details="Más MVPS"
                 />
-                <PlayerDetailsDisplay 
-                    playerName="JOSEDEODO"
-                    teamName="Estrál"
-                    imageURL={josedeodo}
+                <PlayerDetailsDisplay
+                    playerName={jugadorAsesinato?.nickname}
+                    teamName={jugadorAsesinato?.equipo.nombre}
+                    url_foto={jugadorAsesinato?.url_foto}
                     position="jungle"
                     details="ASESINATOS: 75"
                 />
                 <div className="mt-8 md:mt-0">
-                    <PlayerDetailsDisplay 
-                        playerName="LYNOZ"
-                        teamName="Raibow7"
-                        imageURL={lynoz}
+                    <PlayerDetailsDisplay
+                        playerName={jugadorKP?.nickname}
+                        teamName={jugadorKP?.equipo.nombre}
+                        url_foto={jugadorKP?.url_foto}
                         position="support"
-                        details="Mayor KP: 72%"
+                        details="Mayor KP"
                     />
                 </div>
             </div>

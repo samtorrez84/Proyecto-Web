@@ -32,7 +32,6 @@ const positionIcons = {
 
 const PlayerDisplay = ({ playerName, url_team, url_foto, position }) => {
   const positionIcon = positionIcons[position] || '';
-
   return (
     <div className="text-center p-4 rounded-xl relative">
       {url_team && (

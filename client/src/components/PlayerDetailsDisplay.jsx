@@ -1,4 +1,5 @@
 import React from 'react';
+
 import estral from '../assets/images/equipos/estral.png';
 import leviatan from '../assets/images/equipos/leviatan.png';
 import isurus from '../assets/images/equipos/Isurus.png';
@@ -29,7 +30,7 @@ const positionIcons = {
     jungle: jungleIcon
 };
 
-const PlayerDetailsDisplay = ({ playerName, teamName, imageURL, position, details, className }) => {
+const PlayerDetailsDisplay = ({ playerName, teamName, url_foto, position, details, className }) => {
     const teamLogo = teamLogos[teamName] || '';
     const positionIcon = positionIcons[position] || '';
 
@@ -39,7 +40,7 @@ const PlayerDetailsDisplay = ({ playerName, teamName, imageURL, position, detail
 
     return (
         <div className={`relative text-center bg-custom-blue p-4 rounded-xl flex flex-col items-center md:flex-row md:items-start md:justify-between ${className}`}>
-            <img src={imageURL} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl mb-4 md:mb-0 md:mr-4" />
+            <img src={url_foto} alt={`MVP Player ${playerName}`} className="w-24 h-24 rounded-xl mb-4 md:mb-0 md:mr-4" />
             <div className="text-white flex flex-col justify-center items-center md:items-start">
                 <h3 className="text-xl font-bold">{playerName}</h3>
                 <p className="text-sm">{details}</p>
