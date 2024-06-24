@@ -14,15 +14,15 @@ const PlayOffs = () => {
         {/* Muestra como lista en dispositivos móviles */}
         <div className="sm:hidden">
           <div className="mb-4">
-            <div className="bg-pink-500 rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
+            <div className="bg-custom-pink rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
             <Matchup team1="ESTRAL" team2="LEVIATÁN" image1={estral} image2={leviatan} />
           </div>
           <div className="mb-4">
-            <div className="bg-pink-500 rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
+            <div className="bg-custom-pink rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
             <Matchup team1="ISURUS" team2="RAIBOW 7" image1={isurus} image2={raibow7} />
           </div>
           <div>
-            <div className="bg-pink-500 rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
+            <div className="bg-custom-pink rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
             <Matchup team1="SIX KARMA" team2="ALL KNIGHTS" image1={six_karma} image2={all_knights} />
           </div>
         </div>
@@ -30,15 +30,15 @@ const PlayOffs = () => {
         {/* Muestra como divs en pantallas más grandes */}
         <div className="hidden sm:flex justify-center">
           <div className="max-w-md mx-4">
-            <div className="bg-pink-500 rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
+            <div className="bg-custom-pink rounded-full py-2 px-4 text-white font-bold mb-2">PLAY OFFS</div>
             <Matchup team1="ESTRAL" team2="LEVIATÁN" image1={estral} image2={leviatan} />
           </div>
           <div className="max-w-md mx-4">
-            <div className="bg-pink-500 rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
+            <div className="bg-custom-pink rounded-full py-2 px-4 text-white font-bold mb-2">PLAY OFFS</div>
             <Matchup team1="ISURUS" team2="RAIBOW 7" image1={isurus} image2={raibow7} />
           </div>
           <div className="max-w-md mx-4">
-            <div className="bg-pink-500 rounded-full py-2 px-4 text-black font-bold mb-2">PLAY OFFS</div>
+            <div className="bg-custom-pink rounded-full py-2 px-4 text-white font-bold mb-2">PLAY OFFS</div>
             <Matchup team1="SIX KARMA" team2="ALL KNIGHTS" image1={six_karma} image2={all_knights} />
           </div>
         </div>

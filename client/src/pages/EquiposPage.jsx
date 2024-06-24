@@ -30,7 +30,7 @@ const EquiposPage = () => {
           <PlayOffs />
         </div>
         <div className='py-6 flex flex-col justify-center items-center relative'>
-          <div className="bg-green-500 text-black font-bold py-2 px-4 rounded-full inline-block mb-4 w-full text-center">MVP</div>
+          <div className="bg-custom-green text-black font-bold py-2 px-4 rounded-full inline-block mb-4 w-full text-center">MVP</div>
           {jugador ? (
             <PlayerDisplay
               playerName={jugador.jugador}
@@ -42,7 +42,7 @@ const EquiposPage = () => {
             <div>Cargando...</div>
           )}
           <div className="flex flex-col items-center justify-center relative z-10 text-center">
-            <p className="font-bold bg-[#BCBEFA] text-black py-2 px-4 rounded-full inline-block mb-4 mt-2">Pan</p>
+            <p className="font-bold bg-custom-blue text-white py-2 px-4 rounded-full inline-block mb-4 mt-2">Pan</p>
           </div>
         </div>
       </div>
