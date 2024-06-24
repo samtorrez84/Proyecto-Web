@@ -94,20 +94,25 @@ const StatisticsPage = () => {
                     />
                 </div>
             </div>
-            <div className="flex justify-center space-x-4 mb-4 py-4">
+            <div className="flex justify-center space-x-4 mb-4 py-4 mt-8">
                 <button
-                    className={`btn ${ordenMVPs ? 'btn-primary' : 'btn-secondary'}`}
+                    className={`px-6 py-3 rounded-full font-bold text-black transition-colors duration-300 ease-in-out transform hover:scale-105 ${
+                    ordenMVPs ? 'bg-custom-green hover:bg-custom-pink hover:text-white ' : 'bg-custom-green hover:bg-custom-pink hover:text-white '
+                    }`}
                     onClick={toggleOrdenMVPs}
                 >
                     Ordenar por MVPs
                 </button>
                 <button
-                    className={`btn ${ordenKDA ? 'btn-primary' : 'btn-secondary'}`}
+                    className={`px-6 py-3 rounded-full font-bold text-black transition-colors duration-300 ease-in-out transform hover:scale-105 ${
+                    ordenKDA ? 'bg-custom-green hover:bg-custom-pink hover:text-white ' : 'bg-custom-green hover:bg-custom-pink hover:text-white '
+                    }`}
                     onClick={toggleOrdenKDA}
                 >
                     Ordenar por KDA
                 </button>
             </div>
+
             <Tabla datos={jugadores.map((jugador, index) => ({
                 ranking: index + 1, // Ranking según el orden de la lista
                 jugador: jugador.nickname.toUpperCase(), // Nombre del jugador

@@ -3,35 +3,31 @@ import PlayerDisplay from '../components/PlayerDisplay';
 
 const Tabla = ({ datos }) => {
   return (
-    <div className="flex justify-center mt-4">
-      <table className="table-auto w-full lg:w-3/4">
+    <div className="flex justify-center mt-8 mb-8">
+      <table className="table-auto w-full lg:w-3/4 bg-gray-800 text-white shadow-lg rounded-lg overflow-hidden">
         <thead>
-          <tr>
-            <th className="px-4 py-2">RANKING</th>
-            <th className="px-4 py-2">JUGADOR</th>
-            <th className="px-4 py-2">MVP</th>
-            <th className="px-4 py-2">KDA</th>
+          <tr className="bg-custom-blue">
+            <th className="px-6 py-3 text-left">RANKING</th>
+            <th className="px-6 py-3 text-left">JUGADOR</th>
+            <th className="px-6 py-3 text-left">MVP</th>
+            <th className="px-6 py-3 text-left">KDA</th>
           </tr>
         </thead>
         <tbody>
           {datos.map((dato) => (
-            <tr key={dato.ranking}>
-              <td className="border px-4 py-2">{dato.ranking}</td>
-              <td className="border px-2 py-2">
-                <div className="flex flex-col lg:flex-row items-center">
-                  <div className="w-full lg:w-2/5 flex justify-center lg:justify-start">{dato.jugador}</div> {/* Ancho ajustable */}
-                  <div className="ml-0 lg:ml-2 mt-2 lg:mt-0">
-                    <PlayerDisplay
-                      playerName={dato.jugador}
-                      url_team={dato.url_team}
-                      url_foto={dato.url_foto}
-                      position={dato.position}
-                    />
+            <tr key={dato.ranking} className="bg-custom-dark border-b border-white hover:bg-gray-700 transition-colors duration-300">
+              <td className="px-6 py-4 text-center">{dato.ranking}</td>
+              <td className="px-6 py-4">
+                <div className="flex items-center space-x-4">
+                  <img src={dato.url_foto} alt={`${dato.jugador} Foto`} className="w-12 h-12 rounded-full" />
+                  <div>
+                    <div className="text-lg font-bold">{dato.jugador}</div>
+                    <div className="text-sm text-gray-400">{dato.position}</div>
                   </div>
                 </div>
               </td>
-              <td className="border px-4 py-2">{dato.mvp}</td>
-              <td className="border px-4 py-2">{dato.kda} kda</td>
+              <td className="px-6 py-4 text-center">{dato.mvp}</td>
+              <td className="px-6 py-4 text-center">{dato.kda} KDA</td>
             </tr>
           ))}
         </tbody>
