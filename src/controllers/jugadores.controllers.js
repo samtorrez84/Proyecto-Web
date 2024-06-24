@@ -35,10 +35,10 @@ export const crearJugador = async (req, res) => {
 
 // Obtener un jugador por su nombre
 export const obtenerJugadorPorNombre = async (req, res) => {
-    const { nombre } = req.params;
+    const { nickname } = req.params;
     
     try {
-        const jugador = await Jugador.findOne({ nombre: nombre });
+        const jugador = await Jugador.findOne({ nickname: nickname });
         if (jugador) {
             res.json(jugador);
         } else {
